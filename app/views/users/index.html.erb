@@ -1,6 +1,38 @@
-<% @users.each do |user| %>
-  nombre : <%= user.name %>
-  <br>
-  correo : <%= user.email %>
-  <br>
-<% end %>
+<div class="new-button">
+  <%= link_to "Nuevo", new_user_path %>
+</div>  
+
+<br>
+<br>
+<br>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.full_name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to "Ver", user_path(user)  %></td>
+      <td><%= link_to "Actualizar", edit_user_path(user) %></td>
+      <td><%= link_to "Eliminiar", user_path(user), method: :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+<br>
+<br>
+<br>
+<div class="back-button">
+  <%= link_to "Atras", root_path %>
+</div>

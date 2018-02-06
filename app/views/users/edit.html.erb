@@ -1,0 +1,9 @@
+<%= form_for @user, methos: :put do |f| %>
+  <%= f.label :Nombre %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :Correo %>
+  <%= f.text_field :email %>
+  <br>
+  <%= f.submit "Editar" %>
+<% end %>

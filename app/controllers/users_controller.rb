@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :users, only: [:index, :create]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   def index
   end
 
@@ -10,12 +12,26 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    if user.save
+    redirect_to users_path(@users)
+    print "nice" if user.save
+  end
+
+  def show
+  end
+
+  def update
+    @user.assign_attributes user_params
+    if @user.save
       redirect_to users_path(@users)
     else
-      render :new
-    end
-  end
+      render :edit
+    end  
+  end 
+
+  def destroy
+    @user.destroy
+    redirect_to users_path(@users)
+  end 
 
   private
     def user_params
@@ -25,5 +41,9 @@ class UsersController < ApplicationController
     def users
       @users = User.all
     end
+
+    def set_user
+      @user = User.find(params[:id])
+    end  
 
 end
